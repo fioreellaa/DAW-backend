@@ -29,9 +29,21 @@ public class ServicioService {
     	int sevcontador = (int) contador;
     	return sevcontador;
     }
-
+	
+	//Buscar
 	public Servicio obtenerServicioById(int idServ) {
 		return srepo.findById(idServ).orElse(null);		
 	}
+	    
+	//Agregar
+	public Servicio agregarServicio(Servicio servicio) {
+	    return srepo.save(servicio);
+	}
+
+	//Eliminar
+	public void eliminarServicio(int idServicio) {
+		srepo.deleteById(idServicio);
+	}
+
     
 }
