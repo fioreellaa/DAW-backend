@@ -40,13 +40,13 @@ public class ServicioController {
 	}
 
 	// Agregar
-	@PostMapping
+	@PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
 	public Servicio agregarServicio(@RequestBody Servicio service) {
 		return servicioService.agregarServicio(service);
 	}
 
 	// Editar
-	@PutMapping("/{id}")
+	@PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
 	public Servicio modificarServicio(@PathVariable("id") int id, @RequestBody Servicio service) {
 		service.setCodServicio(id);
 		return servicioService.guardarServicio(service);

@@ -19,9 +19,7 @@ public class Servicio {
 	    
 	@Temporal(TemporalType.DATE)
 	private Date fecha_cita;
-	   
-	@Temporal(TemporalType.TIME)
-    private Date hora_cita;
+	private String hora_cita;
 	private int lugar;
 	private String direccion;
 	private String referencia;
@@ -101,12 +99,12 @@ public class Servicio {
 	}
 
 
-	public Date getHora_cita() {
+	public String getHora_cita() {
 		return hora_cita;
 	}
 
 
-	public void setHora_cita(Date hora_cita) {
+	public void setHora_cita(String hora_cita) {
 		this.hora_cita = hora_cita;
 	}
 
