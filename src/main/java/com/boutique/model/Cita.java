@@ -30,6 +30,7 @@ public class Cita {
 	private String nombrePersona;
 	private String numeroTel;
 	private String email;
+	private String descripcion;
 	
 	@ManyToOne
 	@JoinColumn(name = "idServicio")
@@ -115,6 +116,14 @@ public class Cita {
 
 	public void setTurno(Turno turno) {
 		this.turno = turno;
+	}
+
+	public String getDescripcion() {
+		return descripcion;
+	}
+
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
 	}
 	
 	
