@@ -21,14 +21,14 @@ import com.boutique.service.ServicioService;
 import com.boutique.service.UsuarioService;
 
 @RestController
-@RequestMapping(value = "/servicios", produces = MediaType.APPLICATION_JSON_VALUE)
-@CrossOrigin("*")
+@RequestMapping("/servicios")
 public class ServicioController {
 
 	@Autowired
 	private ServicioService servicioService;
 
 	// Listar
+	@GetMapping
 	public List<Servicio> listarServicios() {
 		return servicioService.obtenerTodosLosServicios();
 	}
