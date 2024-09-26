@@ -49,4 +49,49 @@ public class UsuarioController {
     public void eliminarUsuario(@PathVariable int id) {
         usuarioService.eliminarUsuario(id);
     }
+    
+    /** 
+    
+	 private final IUsuario urepository;
+
+	    @Autowired
+	    public UsuarioService(IUsuario usuarioRepository) {
+	        this.urepository = usuarioRepository;
+	    }
+
+	    public Usuario registrarUsuario(Usuario usuario) { 	
+	    	usuario.setTipoUsuario("USER");
+	        Usuario usuarioGuardado = urepository.save(usuario);
+	        return usuarioGuardado;
+	        
+	    }
+
+	    public Usuario autenticarUsuario(String correoUsuario, String contrasenaUsuario) {
+	        Usuario usuario = urepository.findByCorreoUsuario(correoUsuario);
+
+	        if (usuario != null && usuario.getContrasenaUsuario().equals(contrasenaUsuario)) {
+	            return usuario;
+	        }
+	        
+	        return null;
+	    }
+	    
+	    
+	    
+	    public List<Usuario> listarUsuarios() {
+	        return urepository.findAll();
+	    }
+
+	    public void eliminarUsuario(int idUsuario) {
+	    	urepository.deleteById(idUsuario);
+	    }
+
+	    public Usuario obtenerUsuarioPorId(int idUsuario) {
+	        return urepository.findById(idUsuario).orElse(null);
+	    }
+
+	    public Usuario actualizarUsuario(Usuario usuario) {
+	        return urepository.save(usuario);
+	    }
+	    **/
 }

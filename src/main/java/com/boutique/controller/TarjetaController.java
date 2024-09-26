@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,39 +13,40 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import com.boutique.model.Producto;
-import com.boutique.service.ProductoService;
+
+import com.boutique.model.Tarjeta;
+import com.boutique.service.TarjetaService;
 
 @RestController
-@RequestMapping("/productos")
-@CrossOrigin("*")
-public class ProductoController {
+@RequestMapping("/tarjeta")
+@CrossOrigin("*") 
+public class TarjetaController {
 
     @Autowired
-    private ProductoService productoService;
+    private TarjetaService tarjetaService;
 
     @GetMapping
-    public List<Producto> listarProductos() {
-        return productoService.listarProducto();
+    public List<Tarjeta> listarTarjetas() {
+        return tarjetaService.listarTarjeta();
     }
 
     @GetMapping("/{id}")
-    public Optional<Producto> obtenerProducto(@PathVariable int id) {
-        return productoService.buscarProducto(id);
+    public Optional<Tarjeta> obtenerTarjeta(@PathVariable int id) {
+        return tarjetaService.buscarTarjeta(id);
     }
 
     @PostMapping
-    public Producto agregarProducto(@RequestBody Producto producto) {
-        return productoService.agregarProducto(producto);
+    public Tarjeta agregarTarjeta(@RequestBody Tarjeta tarjeta) {
+        return tarjetaService.agregarTarjeta(tarjeta);
     }
 
     @PutMapping
-    public Producto actualizarProducto(@RequestBody Producto producto) {
-        return productoService.actualizarProducto(producto);
+    public Tarjeta actualizarTarjeta(@RequestBody Tarjeta tarjeta) {
+        return tarjetaService.actualizarTarjeta(tarjeta);
     }
 
     @DeleteMapping("/{id}")
-    public Boolean eliminarProducto(@PathVariable int id) {
-        return productoService.deleteProducto(id);
+    public Boolean eliminarTarjeta(@PathVariable int id) {
+        return tarjetaService.eliminarTarjeta(id);
     }
 }

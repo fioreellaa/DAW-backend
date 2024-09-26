@@ -26,12 +26,15 @@ public class Orden {
     @JoinColumn(name = "id_usuario")
     private Usuario idUsuario;
 
+    @ManyToOne
+    @JoinColumn(name = "id_venta")
+    private Venta venta;
+
     public Orden() {
 
     }
 
-    public Orden(int codOrden, String correo, String nombre, String apellido, String telefono, int dni, int cantidad, double precioFinal, Usuario idUsuario) {
-        super();
+    public Orden(int codOrden, String correo, String nombre, String apellido, String telefono, int dni, int cantidad, double precioFinal, Usuario idUsuario, Venta venta) {
         this.codOrden = codOrden;
         this.correo = correo;
         this.nombre = nombre;
@@ -41,7 +44,10 @@ public class Orden {
         this.cantidad = cantidad;
         this.precioFinal = precioFinal;
         this.idUsuario = idUsuario;
+        this.venta = venta;
     }
+
+    // Getters y Setters
 
     public int getCodOrden() {
         return codOrden;
@@ -74,7 +80,6 @@ public class Orden {
     public void setApellido(String apellido) {
         this.apellido = apellido;
     }
-
 
     public String getTelefono() {
         return telefono;
@@ -116,5 +121,11 @@ public class Orden {
         this.idUsuario = idUsuario;
     }
 
+    public Venta getVenta() {
+        return venta;
+    }
 
+    public void setVenta(Venta venta) {
+        this.venta = venta;
+    }
 }

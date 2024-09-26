@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,39 +13,40 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import com.boutique.model.Producto;
-import com.boutique.service.ProductoService;
+
+import com.boutique.model.Venta;
+import com.boutique.service.VentaService;
 
 @RestController
-@RequestMapping("/productos")
-@CrossOrigin("*")
-public class ProductoController {
+@RequestMapping("/venta")
+@CrossOrigin("*") 
+public class VentaController {
 
     @Autowired
-    private ProductoService productoService;
+    private VentaService ventaService;
 
     @GetMapping
-    public List<Producto> listarProductos() {
-        return productoService.listarProducto();
+    public List<Venta> listarVentas() {
+        return ventaService.listarVenta();
     }
 
     @GetMapping("/{id}")
-    public Optional<Producto> obtenerProducto(@PathVariable int id) {
-        return productoService.buscarProducto(id);
+    public Optional<Venta> obtenerVenta(@PathVariable int id) {
+        return ventaService.buscarVenta(id);
     }
 
     @PostMapping
-    public Producto agregarProducto(@RequestBody Producto producto) {
-        return productoService.agregarProducto(producto);
+    public Venta agregarVenta(@RequestBody Venta venta) {
+        return ventaService.agregarVenta(venta);
     }
 
     @PutMapping
-    public Producto actualizarProducto(@RequestBody Producto producto) {
-        return productoService.actualizarProducto(producto);
+    public Venta actualizarVenta(@RequestBody Venta venta) {
+        return ventaService.actualizarVenta(venta);
     }
 
     @DeleteMapping("/{id}")
-    public Boolean eliminarProducto(@PathVariable int id) {
-        return productoService.deleteProducto(id);
+    public Boolean eliminarVenta(@PathVariable int id) {
+        return ventaService.eliminarVenta(id);
     }
 }
