@@ -14,10 +14,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.http.MediaType;
 
-
 import com.boutique.model.Servicio;
+import com.boutique.model.TipoServicio;
 import com.boutique.model.Usuario;
 import com.boutique.service.ServicioService;
+import com.boutique.service.TipoServicioService;
 import com.boutique.service.UsuarioService;
 
 @RestController
@@ -26,6 +27,14 @@ public class ServicioController {
 
 	@Autowired
 	private ServicioService servicioService;
+
+	@Autowired
+	private TipoServicioService tipoServicioService;
+
+	@GetMapping
+	public List<TipoServicio> listarTiposServicios() {
+		return tipoServicioService.listarTiposServicio();
+	}
 
 	// Listar
 	@GetMapping

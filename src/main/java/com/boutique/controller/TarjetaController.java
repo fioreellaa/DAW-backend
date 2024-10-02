@@ -15,7 +15,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.boutique.model.Tarjeta;
+import com.boutique.model.TipoTarjeta;
 import com.boutique.service.TarjetaService;
+import com.boutique.service.TipoTarjetaService;
 
 @RestController
 @RequestMapping("/tarjeta")
@@ -24,6 +26,14 @@ public class TarjetaController {
 
     @Autowired
     private TarjetaService tarjetaService;
+    
+    @Autowired
+    private TipoTarjetaService tipoTarjetaService;
+
+    @GetMapping
+    public List<TipoTarjeta> listarTiposTarjeta() {
+        return tipoTarjetaService.listarTipoTarjeta();
+    }
 
     @GetMapping
     public List<Tarjeta> listarTarjetas() {
