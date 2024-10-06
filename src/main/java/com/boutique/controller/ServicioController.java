@@ -20,6 +20,7 @@ import com.boutique.model.Usuario;
 import com.boutique.service.ServicioService;
 import com.boutique.service.UsuarioService;
 
+@CrossOrigin(origins ="*")
 @RestController
 @RequestMapping("/servicios")
 public class ServicioController {

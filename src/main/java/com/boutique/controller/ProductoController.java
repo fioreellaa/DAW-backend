@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.boutique.model.Producto;
 import com.boutique.service.ProductoService;
 
+@CrossOrigin(origins ="*")
 @RestController
 @RequestMapping("/productos")
 public class ProductoController {
