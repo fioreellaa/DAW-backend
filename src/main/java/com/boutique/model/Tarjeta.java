@@ -11,7 +11,7 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "tarjeta")
+@Table(name = "tarjetas")
 public class Tarjeta {
 
 	@Id
@@ -23,7 +23,6 @@ public class Tarjeta {
 	private String codigoSeguridad;
 
 	@ManyToOne
-
 	@JoinColumn(name = "id_tipotarjeta")
 	private TipoTarjeta tipoTarjeta;
 
@@ -32,7 +31,6 @@ public class Tarjeta {
 	private Usuario usuario;
 
 	public Tarjeta() {
-		
 	}
 	
 	public Tarjeta(int idTarjeta, String numeroTarjeta, String nombreTitular, Date fechaExpiracion,

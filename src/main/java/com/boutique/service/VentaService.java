@@ -3,6 +3,7 @@ package com.boutique.service;
 import java.util.List;
 import java.util.Optional;
 
+import com.boutique.model.DetalleVenta;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,16 +16,21 @@ public class VentaService {
     @Autowired
     private IVentaRepository ventaRepository;
 
-    public List<Venta> listarVenta() {
-        return ventaRepository.findAll();
-    }
+    @Autowired
+    private DetalleService detalleVentaService;
+
+    public List<Venta> listarVenta() { return ventaRepository.findAll(); }
 
     public Optional<Venta> buscarVenta(int id) {
         return ventaRepository.findById(id);
     }
 
     public Venta agregarVenta(Venta venta) {
-        return ventaRepository.save(venta);
+        Venta guardado = ventaRepository.save(venta);
+        for (DetalleVenta detalle : venta.getDetalleVentas()) {
+            detalleVentaService.agregarDetalle(detalle, guardado.getIdVenta());
+        }
+        return guardado;
     }
 
     public Venta actualizarVenta(Venta venta) {
@@ -40,5 +46,9 @@ public class VentaService {
             ventaRepository.deleteById(id);
             return true;
         }).orElse(false);
+    }
+
+    public List<Venta> buscarVentaPorCliente(int idUsuario) {
+        return ventaRepository.findAllByUsuario_IdUsuario(idUsuario);
     }
 }

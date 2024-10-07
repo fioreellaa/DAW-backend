@@ -1,5 +1,6 @@
 package com.boutique.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +14,9 @@ public class TurnoService {
 
 	@Autowired
 	private ITurnoRepository turnoRepository;
-	
+
+	public List<Turno> findAll() { return turnoRepository.findAll(); }
+
 	public Optional<Turno> findById(int idTurno) {
 		return turnoRepository.findById(idTurno);
 	}

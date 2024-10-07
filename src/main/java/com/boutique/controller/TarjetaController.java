@@ -20,7 +20,7 @@ import com.boutique.service.TarjetaService;
 import com.boutique.service.TipoTarjetaService;
 
 @RestController
-@RequestMapping("/tarjeta")
+@RequestMapping("/tarjetas")
 @CrossOrigin("*") 
 public class TarjetaController {
 
@@ -30,15 +30,12 @@ public class TarjetaController {
     @Autowired
     private TipoTarjetaService tipoTarjetaService;
 
-    @GetMapping
-    public List<TipoTarjeta> listarTiposTarjeta() {
-        return tipoTarjetaService.listarTipoTarjeta();
-    }
 
     @GetMapping
-    public List<Tarjeta> listarTarjetas() {
-        return tarjetaService.listarTarjeta();
-    }
+    public List<Tarjeta> listarTarjetas() { return tarjetaService.listarTarjeta(); }
+
+    @GetMapping("/tipos")
+    public List<TipoTarjeta> listarTiposTarjeta() { return tipoTarjetaService.listarTipoTarjeta(); }
 
     @GetMapping("/{id}")
     public Optional<Tarjeta> obtenerTarjeta(@PathVariable int id) {

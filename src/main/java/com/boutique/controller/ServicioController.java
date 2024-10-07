@@ -2,6 +2,8 @@ package com.boutique.controller;
 
 import java.util.List;
 
+import com.boutique.model.*;
+import com.boutique.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -14,27 +16,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.http.MediaType;
 
-import com.boutique.model.Servicio;
-import com.boutique.model.TipoServicio;
-import com.boutique.model.Usuario;
-import com.boutique.service.ServicioService;
-import com.boutique.service.TipoServicioService;
-import com.boutique.service.UsuarioService;
-
 @RestController
 @RequestMapping("/servicios")
+@CrossOrigin("*")
 public class ServicioController {
 
 	@Autowired
 	private ServicioService servicioService;
 
 	@Autowired
-	private TipoServicioService tipoServicioService;
+	private SedeService sedeService;
 
-	@GetMapping
-	public List<TipoServicio> listarTiposServicios() {
-		return tipoServicioService.listarTiposServicio();
-	}
+	@Autowired
+	private TurnoService turnoService;
 
 	// Listar
 	@GetMapping
@@ -66,6 +60,13 @@ public class ServicioController {
 	public void eliminarServicio(@PathVariable("id") int idServicio) {
 		servicioService.eliminarServicio(idServicio);
 	}
+
+
+	@GetMapping("/sedes")
+	public List<Sede> listarSedes() { return sedeService.findAll(); }
+
+	@GetMapping("/turnos")
+	public List<Turno> listarTurnos() { return turnoService.findAll(); }
 
 	// Agregar servicio
 	/*

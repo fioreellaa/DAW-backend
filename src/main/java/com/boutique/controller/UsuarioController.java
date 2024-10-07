@@ -10,6 +10,7 @@ import com.boutique.service.UsuarioService;
 
 @RestController
 @RequestMapping("/usuarios")
+@CrossOrigin("*")
 public class UsuarioController {
 
     @Autowired
@@ -35,14 +36,9 @@ public class UsuarioController {
         return usuarioService.obtenerUsuarioPorId(id);
     }
 
-    @PutMapping("/{id}")
-    public Usuario actualizarUsuario(@PathVariable int id, @RequestBody Usuario usuario) {
-        Usuario usuarioExistente = usuarioService.obtenerUsuarioPorId(id);
-        if (usuarioExistente != null) {
-            usuario.setIdUsuario(id);
-            return usuarioService.actualizarUsuario(usuario);
-        }
-        return null;
+    @PutMapping("/{action}/{id}")
+    public Usuario actualizarInfoUsuario(@PathVariable String action, @PathVariable int id, @RequestBody Usuario usuario) {
+        return usuarioService.actualizarUsuario(action, id, usuario);
     }
 
     @DeleteMapping("/{id}")

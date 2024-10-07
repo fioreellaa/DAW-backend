@@ -14,45 +14,65 @@ public class UsuarioService {
 	
 	 private final IUsuario urepository;
 
-	    @Autowired
-	    public UsuarioService(IUsuario usuarioRepository) {
-	        this.urepository = usuarioRepository;
-	    }
+	@Autowired
+	public UsuarioService(IUsuario usuarioRepository) {
+		this.urepository = usuarioRepository;
+	}
 
-	    public Usuario registrarUsuario(Usuario usuario) { 	
-	    	usuario.setTipoUsuario("USER");
-	        Usuario usuarioGuardado = urepository.save(usuario);
-	        return usuarioGuardado;
-	        
-	    }
+	public Usuario registrarUsuario(Usuario usuario) {
+		usuario.setTipoUsuario("USER");
+		usuario.setEstadoUsuario(true);
+		Usuario usuarioGuardado = urepository.save(usuario);
+		return usuarioGuardado;
+	}
 
-	    public Usuario autenticarUsuario(String correoUsuario, String contrasenaUsuario) {
-	        Usuario usuario = urepository.findByCorreoUsuario(correoUsuario);
+	public Usuario autenticarUsuario(String correoUsuario, String contrasenaUsuario) {
+		Usuario usuario = urepository.findByCorreoUsuario(correoUsuario);
+		if (usuario == null || !usuario.getContrasenaUsuario().equals(contrasenaUsuario)) {
+			Usuario nulo = new Usuario();
+			nulo.setIdUsuario(-1);
+			return nulo;
+		}
+		return usuario;
+	}
 
-	        if (usuario != null && usuario.getContrasenaUsuario().equals(contrasenaUsuario)) {
-	            return usuario;
-	        }
-	        
-	        return null;
-	    }
-	    
-	    
-	    /*******************************************/
-	    
-	    public List<Usuario> listarUsuarios() {
-	        return urepository.findAll();
-	    }
+	/*******************************************/
 
-	    public void eliminarUsuario(int idUsuario) {
-	    	urepository.deleteById(idUsuario);
-	    }
+	public List<Usuario> listarUsuarios() {
+		return urepository.findAll();
+	}
 
-	    public Usuario obtenerUsuarioPorId(int idUsuario) {
-	        return urepository.findById(idUsuario).orElse(null);
-	    }
+	public void eliminarUsuario(int idUsuario) {
+		urepository.deleteById(idUsuario);
+	}
 
-	    public Usuario actualizarUsuario(Usuario usuario) {
-	        return urepository.save(usuario);
-	    }
-	    
+	public Usuario obtenerUsuarioPorId(int idUsuario) {
+		return urepository.findById(idUsuario).orElse(null);
+	}
+
+	public Usuario actualizarUsuario(String action, int id, Usuario usuario) {
+		Usuario encontrado = obtenerUsuarioPorId(id);
+		if (encontrado == null) {
+			Usuario nulo = new Usuario();
+			nulo.setIdUsuario(-1);
+			return nulo;
+		}
+
+		if (action.equals("info")) {
+			encontrado.setNombreUsuario(usuario.getNombreUsuario());
+			encontrado.setApellidoUsuario(usuario.getApellidoUsuario());
+			encontrado.setDireccionUsuario(usuario.getDireccionUsuario());
+			encontrado.setTelefonoUsuario(usuario.getTelefonoUsuario());
+			return urepository.save(encontrado);
+		}
+		else if (action.equals("security")) {
+			encontrado.setContrasenaUsuario(usuario.getContrasenaUsuario());
+			return urepository.save(encontrado);
+		}
+		else {
+			Usuario nulo = new Usuario();
+			nulo.setIdUsuario(-1);
+			return nulo;
+		}
+	}
 }

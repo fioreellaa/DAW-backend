@@ -12,12 +12,12 @@ public class Usuario {
 	private String nombreUsuario;
 	private String apellidoUsuario;
 	private String direccionUsuario;
-	@Column(unique=true)
 	private String telefonoUsuario;
 	@Column(unique=true)
 	private String correoUsuario;
 	private String contrasenaUsuario;	
 	private String tipoUsuario;
+	private boolean estadoUsuario;
 
 	public int getIdUsuario() {
 		return idUsuario;
@@ -82,6 +82,8 @@ public class Usuario {
 	public void setTipoUsuario(String tipoUsuario) {
 		this.tipoUsuario = tipoUsuario;
 	}
-	
-	
+
+	public boolean isEstadoUsuario() { return estadoUsuario; }
+
+	public void setEstadoUsuario(boolean estadoUsuario) { this.estadoUsuario = estadoUsuario; }
 }
