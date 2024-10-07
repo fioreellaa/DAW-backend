@@ -8,7 +8,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "sede")
+@Table(name = "sedes")
 public class Sede {
 	
 	@Id
@@ -16,8 +16,9 @@ public class Sede {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idSede;
 	private String distrito;
-	private String dirección;
+	private String direccion;
 	private String referencia;
+
 	public int getIdSede() {
 		return idSede;
 	}
@@ -30,11 +31,11 @@ public class Sede {
 	public void setDistrito(String distrito) {
 		this.distrito = distrito;
 	}
-	public String getDirección() {
-		return dirección;
+	public String getDireccion() {
+		return direccion;
 	}
-	public void setDirección(String dirección) {
-		this.dirección = dirección;
+	public void setDireccion(String direccion) {
+		this.direccion = direccion;
 	}
 	public String getReferencia() {
 		return referencia;
@@ -42,6 +43,5 @@ public class Sede {
 	public void setReferencia(String referencia) {
 		this.referencia = referencia;
 	}
-	
-	
+
 }

@@ -8,7 +8,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "turno")
+@Table(name = "turnos")
 public class Turno {
 	@Id
     @Column(name = "idTurno")
@@ -16,6 +16,7 @@ public class Turno {
 	private int idTurno;
 	private String turno;
 	private String horario;
+	
 	public int getIdTurno() {
 		return idTurno;
 	}
@@ -34,6 +35,5 @@ public class Turno {
 	public void setHorario(String horario) {
 		this.horario = horario;
 	}
-	
-	
+
 }

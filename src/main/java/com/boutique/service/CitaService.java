@@ -7,6 +7,8 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cglib.core.Local;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.boutique.model.Cita;
@@ -36,16 +38,18 @@ public class CitaService {
         return count < 3;
     }
 	
-    public Cita addCita(Cita c) {
-    	if (canAddCita(c.getSede(), c.getTurno(), c.getFechaCita())) {
-    		c.setEstado("RESERVADA");
-            return citasRepository.save(c);  
-        } else {
-            System.out.println("No se pueden agregar más citas en esta sede, turno y fecha.");
-            return null;
-        }
-    }
-    
+	public ResponseEntity<?> addCita(Cita c) {
+	    if (canAddCita(c.getSede(), c.getTurno(), c.getFechaCita())) {
+	        c.setEstado("RESERVADA");
+	        Cita nuevaCita = citasRepository.save(c);  
+	        return ResponseEntity.status(HttpStatus.CREATED).body(nuevaCita);
+	    } else {
+	        System.out.println("No se pueden agregar más citas en esta sede, turno y fecha.");
+	        // Devolver un BAD_REQUEST con un mensaje
+	        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("No se pueden agregar más citas en esta sede, turno y fecha.");
+	    }
+	}
+	
     public List<Cita> searchByDate(LocalDate fecha) {
     	return citasRepository.findByFechaCita(fecha);
     }

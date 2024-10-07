@@ -16,7 +16,7 @@ import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
 
 @Entity
-@Table(name = "cita")
+@Table(name = "citas")
 public class Cita {
 	@Id
     @Column(name = "codCita")

@@ -22,23 +22,26 @@ public class DetalleController {
 		return detalleService.listarDetalle();
 	}
 
-	@GetMapping("/{id}")
-	public Optional<DetalleVenta> obtenerDetalle(@PathVariable int id) {
-		return detalleService.buscarDetalle(id);
-	}
+//	@GetMapping("/{id}")
+//	public Optional<DetalleVenta> obtenerDetalle(@PathVariable int id) {
+//		return detalleService.buscarDetalle(id);
+//	}
 
-	@PostMapping
-	public DetalleVenta agregarDetalle(@RequestBody DetalleVenta detalle) {
-		return detalleService.agregarDetalle(detalle);
-	}
+	@GetMapping("/venta/{id}")
+	public List<DetalleVenta> listarPorVenta(@PathVariable int id) { return detalleService.listarPorIdVenta(id); }
 
-	@PutMapping
-	public DetalleVenta actualizarDetalle(@RequestBody DetalleVenta detalle) {
-		return detalleService.actualizarDetalle(detalle);
-	}
-
-	@DeleteMapping("/{id}")
-	public Boolean eliminarDetalle(@PathVariable int id) {
-		return detalleService.eliminarDetalle(id);
-	}
+//	@PostMapping
+//	public DetalleVenta agregarDetalle(@RequestBody DetalleVenta detalle) {
+//		return detalleService.agregarDetalle(detalle);
+//	}
+//
+//	@PutMapping
+//	public DetalleVenta actualizarDetalle(@RequestBody DetalleVenta detalle) {
+//		return detalleService.actualizarDetalle(detalle);
+//	}
+//
+//	@DeleteMapping("/{id}")
+//	public Boolean eliminarDetalle(@PathVariable int id) {
+//		return detalleService.eliminarDetalle(id);
+//	}
 }

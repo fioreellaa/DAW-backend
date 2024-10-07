@@ -9,7 +9,7 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "producto")
+@Table(name = "productos")
 public class Producto {
 
     @Id
@@ -17,9 +17,11 @@ public class Producto {
     private int codPro;
     private String nombre;
     private String descripcion;
-    private String cantidad;
+    private int stock;
     private double precio;
     private String imagen;
+	private boolean estado;
+
     @ManyToOne
     @JoinColumn(name = "id_categoria")
     private CategoriaProducto categoriaProducto;
@@ -27,12 +29,12 @@ public class Producto {
     public Producto() {
     }
 
-	public Producto(int codPro, String nombre, String descripcion, String cantidad, double precio, String imagen,
+	public Producto(int codPro, String nombre, String descripcion, int stock, double precio, String imagen,
 			CategoriaProducto categoriaProducto) {
 		this.codPro = codPro;
 		this.nombre = nombre;
 		this.descripcion = descripcion;
-		this.cantidad = cantidad;
+		this.stock = stock;
 		this.precio = precio;
 		this.imagen = imagen;
 		this.categoriaProducto = categoriaProducto;
@@ -62,12 +64,12 @@ public class Producto {
 		this.descripcion = descripcion;
 	}
 
-	public String getCantidad() {
-		return cantidad;
+	public int getStock() {
+		return stock;
 	}
 
-	public void setCantidad(String cantidad) {
-		this.cantidad = cantidad;
+	public void setStock(int stock) {
+		this.stock = stock;
 	}
 
 	public double getPrecio() {
@@ -94,6 +96,7 @@ public class Producto {
 		this.categoriaProducto = categoriaProducto;
 	}
 
-    
-   
+	public boolean isEstado() { return estado; }
+
+	public void setEstado(boolean estado) { this.estado = estado; }
 }

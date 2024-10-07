@@ -3,6 +3,7 @@ package com.boutique.service;
 import java.util.List;
 import java.util.Optional;
 
+import com.boutique.model.Venta;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,7 +24,10 @@ public class DetalleService {
         return detalleRepository.findById(id);
     }
 
-    public DetalleVenta agregarDetalle(DetalleVenta detalle) {
+    public DetalleVenta agregarDetalle(DetalleVenta detalle, int idVenta) {
+        Venta venta = new Venta();
+        venta.setIdVenta(idVenta);
+        detalle.setVenta(venta);
         return detalleRepository.save(detalle);
     }
 
@@ -40,4 +44,6 @@ public class DetalleService {
             return true;
         }).orElse(false);
     }
+
+    public List<DetalleVenta> listarPorIdVenta(int id) { return detalleRepository.findAllByVenta_IdVenta(id); }
 }

@@ -6,15 +6,8 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import com.boutique.model.Cita;
 import com.boutique.model.Sede;
@@ -52,14 +45,14 @@ public class CitasController {
 	public List<Cita> listCitasBySedeTurnoAndFecha(@PathVariable int idSede, @PathVariable int idTurno, @PathVariable LocalDate fecha) {
 		return citaService.searchBySedeTurnoAndDate(idSede, idTurno, fecha);
 	}
-	
+
 	/*
 	 * @GetMapping("/{id}") public Optional<Cita> getCita(@PathVariable int id) {
 	 * return citaService.searchCita(id); }
 	 */
 
 	@PostMapping
-	public Cita addCita(@RequestBody Cita cita) {
+	public ResponseEntity<?> addCita(@RequestBody Cita cita) {
 		return citaService.addCita(cita);
 	}
 
@@ -74,7 +67,7 @@ public class CitasController {
 	/*
 	 * @PutMapping public Cita updateCita(@RequestBody Cita cita) { return
 	 * citaService.updateCita(cita); }
-	 * 
+	 *
 	 * @DeleteMapping("/{id}") public Boolean deleteCita(@PathVariable int id) {
 	 * return citaService.deleteCita(id); }
 	 */

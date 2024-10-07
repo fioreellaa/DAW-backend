@@ -31,15 +31,8 @@ public class ProductoController {
     @Autowired
 	private CategoriaProductoService categoriaProductoService;
 
-	@GetMapping("/categorias")
-	public List<CategoriaProducto> listarCategorias() {
-		return categoriaProductoService.listarCategoria();
-	}
-
     @GetMapping
-    public List<Producto> listarProductos() {
-        return productoService.listarProducto();
-    }
+    public List<Producto> listarProductos() { return productoService.listarProducto(); }
 
     @GetMapping("/{id}")
     public Optional<Producto> obtenerProducto(@PathVariable int id) {
@@ -47,17 +40,18 @@ public class ProductoController {
     }
 
     @PostMapping
-    public Producto agregarProducto(@RequestBody Producto producto) {
-        return productoService.agregarProducto(producto);
-    }
+    public Producto agregarProducto(@RequestBody Producto producto) { return productoService.agregarProducto(producto); }
 
     @PutMapping
-    public Producto actualizarProducto(@RequestBody Producto producto) {
-        return productoService.actualizarProducto(producto);
-    }
+    public Producto actualizarProducto(@RequestBody Producto producto) { return productoService.actualizarProducto(producto); }
 
     @DeleteMapping("/{id}")
     public Boolean eliminarProducto(@PathVariable int id) {
         return productoService.deleteProducto(id);
+    }
+
+    @GetMapping("/categorias")
+    public List<CategoriaProducto> listarCategorias() {
+        return categoriaProductoService.listarCategoria();
     }
 }

@@ -18,7 +18,7 @@ import com.boutique.model.Venta;
 import com.boutique.service.VentaService;
 
 @RestController
-@RequestMapping("/venta")
+@RequestMapping("/ventas")
 @CrossOrigin("*") 
 public class VentaController {
 
@@ -49,4 +49,7 @@ public class VentaController {
     public Boolean eliminarVenta(@PathVariable int id) {
         return ventaService.eliminarVenta(id);
     }
+
+    @GetMapping("/usuario/{id}")
+    public List<Venta> buscarPorUsuario(@PathVariable int id) { return ventaService.buscarVentaPorCliente(id); }
 }

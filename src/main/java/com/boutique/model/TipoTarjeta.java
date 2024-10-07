@@ -9,7 +9,7 @@ import jakarta.persistence.Table;
 
 @Entity
 
-@Table(name = "tipotarjeta")
+@Table(name = "tipos_tarjeta")
 public class TipoTarjeta {
 
     @Id
@@ -21,7 +21,6 @@ public class TipoTarjeta {
     private String nombreTipo;
 
     public TipoTarjeta() {
-    	
     }
 
 	public TipoTarjeta(int idTipoTarjeta, String nombreTipo) {
@@ -45,8 +44,5 @@ public class TipoTarjeta {
 		this.nombreTipo = nombreTipo;
 	}
 
-	
-
-   
 }
 
