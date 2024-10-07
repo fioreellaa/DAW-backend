@@ -14,16 +14,27 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.boutique.model.CategoriaProducto;
 import com.boutique.model.Producto;
+import com.boutique.service.CategoriaProductoService;
 import com.boutique.service.ProductoService;
 
-@CrossOrigin(origins ="*")
 @RestController
 @RequestMapping("/productos")
+@CrossOrigin("*")
 public class ProductoController {
 
     @Autowired
     private ProductoService productoService;
+
+    @Autowired
+	private CategoriaProductoService categoriaProductoService;
+
+	@GetMapping("/categorias")
+	public List<CategoriaProducto> listarCategorias() {
+		return categoriaProductoService.listarCategoria();
+	}
 
     @GetMapping
     public List<Producto> listarProductos() {

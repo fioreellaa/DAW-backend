@@ -9,6 +9,6 @@ import com.boutique.model.Orden;
 import com.boutique.model.Usuario;
 
 @Repository
-public interface IOrden extends JpaRepository<Orden, Integer> {
+public interface IOrdenRepository extends JpaRepository<Orden, Integer> {
     List<Orden> findByidUsuario(Usuario idUsuario);
 }

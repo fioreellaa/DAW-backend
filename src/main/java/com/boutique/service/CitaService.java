@@ -70,11 +70,12 @@ public class CitaService {
         return citasRepository.findByEstado(estado);
     }
 
-    /*
+    
     public Optional<Cita> searchCita(int id) {
         return citasRepository.findById(id);
     }
     
+
     public Cita updateCita(Cita c) {
         if(searchCita(c.getCodCita()).isPresent()){
             return citasRepository.save(c);
@@ -82,7 +83,7 @@ public class CitaService {
         return null;
     }
 
-    
+    /*
     public Boolean deleteCita(int id) {
         return searchCita(id).map(pro -> {
             citasRepository.deleteById(id);

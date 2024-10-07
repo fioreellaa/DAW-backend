@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.http.MediaType;
 
-
 import com.boutique.model.Servicio;
+import com.boutique.model.TipoServicio;
 import com.boutique.model.Usuario;
 import com.boutique.service.ServicioService;
 import com.boutique.service.UsuarioService;

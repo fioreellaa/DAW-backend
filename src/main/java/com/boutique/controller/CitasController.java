@@ -63,6 +63,14 @@ public class CitasController {
 		return citaService.addCita(cita);
 	}
 
+	@PutMapping("/{id}/estado")
+	public Cita updateEstado (@PathVariable int id, @RequestBody String estado) {
+		Optional<Cita> citaOptional = citaService.searchCita(id);
+		Cita cita = citaOptional.get();
+	    cita.setEstado(estado);
+	    return citaService.updateCita(cita);
+	}
+	
 	/*
 	 * @PutMapping public Cita updateCita(@RequestBody Cita cita) { return
 	 * citaService.updateCita(cita); }
