@@ -71,5 +71,4 @@ public class CitasController {
 	 * @DeleteMapping("/{id}") public Boolean deleteCita(@PathVariable int id) {
 	 * return citaService.deleteCita(id); }
 	 */
-
 }

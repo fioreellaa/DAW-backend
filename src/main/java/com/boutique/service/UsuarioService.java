@@ -1,6 +1,7 @@
 package com.boutique.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -74,5 +75,18 @@ public class UsuarioService {
 			nulo.setIdUsuario(-1);
 			return nulo;
 		}
+	}
+
+	public Usuario actualizarEstado(int id) {
+		Usuario usuario = null;
+		Optional<Usuario> encontrado = urepository.findById(id);
+		if (!encontrado.isPresent()) {
+			Usuario nulo = new Usuario();
+			nulo.setIdUsuario(-1);
+			return nulo;
+		}
+		usuario = encontrado.get();
+		usuario.setEstadoUsuario(!usuario.isEstadoUsuario());
+		return urepository.save(usuario);
 	}
 }

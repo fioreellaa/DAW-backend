@@ -22,8 +22,8 @@ public class UsuarioController {
     }
 
     @PostMapping("/autenticar")
-    public Usuario autenticarUsuario(@RequestParam String correoUsuario, @RequestParam String contrasenaUsuario) {
-        return usuarioService.autenticarUsuario(correoUsuario, contrasenaUsuario);
+    public Usuario autenticarUsuario(@RequestBody Usuario usuario) {
+        return usuarioService.autenticarUsuario(usuario.getCorreoUsuario(), usuario.getContrasenaUsuario());
     }
 
     @GetMapping
@@ -45,7 +45,9 @@ public class UsuarioController {
     public void eliminarUsuario(@PathVariable int id) {
         usuarioService.eliminarUsuario(id);
     }
-    
+
+	@PutMapping("/estado/{id}")
+	public Usuario actualizarEstado(@PathVariable int id) { return usuarioService.actualizarEstado(id); }
     /** 
     
 	 private final IUsuario urepository;
