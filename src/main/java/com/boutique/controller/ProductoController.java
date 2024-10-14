@@ -25,33 +25,39 @@ import com.boutique.service.ProductoService;
 @CrossOrigin("*")
 public class ProductoController {
 
-    @Autowired
-    private ProductoService productoService;
+	@Autowired
+	private ProductoService productoService;
 
-    @Autowired
+	@Autowired
 	private CategoriaProductoService categoriaProductoService;
 
-    @GetMapping
-    public List<Producto> listarProductos() { return productoService.listarProducto(); }
+	@GetMapping
+	public List<Producto> listarProductos() {
+		return productoService.listarProducto();
+	}
 
-    @GetMapping("/{id}")
-    public Optional<Producto> obtenerProducto(@PathVariable int id) {
-        return productoService.buscarProducto(id);
-    }
+	@GetMapping("/{id}")
+	public Optional<Producto> obtenerProducto(@PathVariable int id) {
+		return productoService.buscarProducto(id);
+	}
 
-    @PostMapping
-    public Producto agregarProducto(@RequestBody Producto producto) { return productoService.agregarProducto(producto); }
+	@PostMapping
+	public Producto agregarProducto(@RequestBody Producto producto) {
+		return productoService.agregarProducto(producto);
+	}
 
-    @PutMapping
-    public Producto actualizarProducto(@RequestBody Producto producto) { return productoService.actualizarProducto(producto); }
+	@PutMapping
+	public Producto actualizarProducto(@RequestBody Producto producto) {
+		return productoService.actualizarProducto(producto);
+	}
 
-    @DeleteMapping("/{id}")
-    public Boolean eliminarProducto(@PathVariable int id) {
-        return productoService.deleteProducto(id);
-    }
+	@DeleteMapping("/{id}")
+	public Boolean eliminarProducto(@PathVariable int id) {
+		return productoService.deleteProducto(id);
+	}
 
-    @GetMapping("/categorias")
-    public List<CategoriaProducto> listarCategorias() {
-        return categoriaProductoService.listarCategoria();
-    }
+	@GetMapping("/categorias")
+	public List<CategoriaProducto> listarCategorias() {
+		return categoriaProductoService.listarCategoria();
+	}
 }

@@ -1,5 +1,7 @@
 package com.boutique.model;
 
+import org.hibernate.annotations.ColumnDefault;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -20,6 +22,8 @@ public class Producto {
     private int stock;
     private double precio;
     private String imagen;
+    
+    @ColumnDefault(value="true")
 	private boolean estado;
 
     @ManyToOne

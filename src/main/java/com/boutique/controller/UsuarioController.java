@@ -22,8 +22,8 @@ public class UsuarioController {
     }
 
     @PostMapping("/autenticar")
-    public Usuario autenticarUsuario(@RequestParam String correoUsuario, @RequestParam String contrasenaUsuario) {
-        return usuarioService.autenticarUsuario(correoUsuario, contrasenaUsuario);
+    public Usuario autenticarUsuario(@RequestBody Usuario usuario) {
+        return usuarioService.autenticarUsuario(usuario.getCorreoUsuario(), usuario.getContrasenaUsuario());
     }
 
     @GetMapping
