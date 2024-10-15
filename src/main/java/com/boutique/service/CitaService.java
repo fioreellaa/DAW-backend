@@ -87,6 +87,10 @@ public class CitaService {
         return null;
     }
 
+    public List<Cita> findAllByEmail(String email) {
+        return citasRepository.findAllByEmail(email);
+    }
+
     /*
     public Boolean deleteCita(int id) {
         return searchCita(id).map(pro -> {

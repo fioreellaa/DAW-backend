@@ -63,7 +63,11 @@ public class CitasController {
 	    cita.setEstado(estado);
 	    return citaService.updateCita(cita);
 	}
-	
+
+	@GetMapping("/user")
+	public List<Cita> findByEmail(@RequestParam String email) {
+		return citaService.findAllByEmail(email);
+	}
 	/*
 	 * @PutMapping public Cita updateCita(@RequestBody Cita cita) { return
 	 * citaService.updateCita(cita); }

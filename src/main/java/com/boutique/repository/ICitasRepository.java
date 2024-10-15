@@ -26,5 +26,7 @@ public interface ICitasRepository extends JpaRepository<Cita, Integer>{
 	long countBySedeAndTurnoAndFechaCita(Sede sede, Turno turno, LocalDate fechaCita);
 
 	List<Cita> findByTurno(Optional<Turno> turno);
+
+	List<Cita> findAllByEmail(String email);
 	
 }
