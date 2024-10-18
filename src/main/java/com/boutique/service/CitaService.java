@@ -11,91 +11,68 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import com.boutique.model.Cita;
+import com.boutique.client.CitasClient;
+import com.boutique.model.Citas;
 import com.boutique.model.Sede;
 import com.boutique.model.Turno;
-import com.boutique.repository.ICitasRepository;
-import com.boutique.repository.ISedeRepository;
 
 @Service
 public class CitaService {
-
-	@Autowired
-	private ICitasRepository citasRepository;
 	
-	@Autowired
-	private SedeService sedeService;
+	private final CitasClient citasClient;
 	
-	@Autowired
-	private TurnoService turnoService;
-	
-	public List<Cita> listarCitas() {
-        return citasRepository.findAll();
-    }
-
-	public boolean canAddCita(Sede idSede, Turno idTurno, LocalDate fecha) {
-        long count = citasRepository.countBySedeAndTurnoAndFechaCita(idSede, idTurno, fecha);
-        return count < 3;
-    }
-	
-	public ResponseEntity<?> addCita(Cita c) {
-	    if (canAddCita(c.getSede(), c.getTurno(), c.getFechaCita())) {
-	        c.setEstado("RESERVADA");
-	        Cita nuevaCita = citasRepository.save(c);  
-	        return ResponseEntity.status(HttpStatus.CREATED).body(nuevaCita);
-	    } else {
-	        System.out.println("No se pueden agregar más citas en esta sede, turno y fecha.");
-	        // Devolver un BAD_REQUEST con un mensaje
-	        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("No se pueden agregar más citas en esta sede, turno y fecha.");
-	    }
+	public CitaService(CitasClient citasClient) {
+		this.citasClient = citasClient;
 	}
 	
-    public List<Cita> searchByDate(LocalDate fecha) {
-    	return citasRepository.findByFechaCita(fecha);
-    }
-    
-    public List<Cita> searchBySede(int idSede) {
-    	Optional<Sede> sede = sedeService.findById(idSede);
-    	return citasRepository.findBySede(sede);
-    }
-    
-    public List<Cita> searchByTurno(int idTurno) {
-    	Optional<Turno> turno = turnoService.findById(idTurno);
-    	return citasRepository.findByTurno(turno);
-    }
-    
-    public List<Cita> searchBySedeTurnoAndDate(int idSede, int idTurno, LocalDate fecha) {
-    	Optional<Sede> sede = sedeService.findById(idSede);
-    	Optional<Turno> turno = turnoService.findById(idTurno);
-        return citasRepository.findBySedeAndTurnoAndFechaCita(sede, turno, fecha);
-    }
-    
-    public List<Cita> searchByEstado(String estado) {
-        return citasRepository.findByEstado(estado);
+//	@Autowired
+//	private SedeService sedeService;
+//	
+//	@Autowired
+//	private TurnoService turnoService;
+//	
+	public List<Citas> listarCitas() {
+        return citasClient.listCitas();
     }
 
-    
-    public Optional<Cita> searchCita(int id) {
-        return citasRepository.findById(id);
-    }
-    
-
-    public Cita updateCita(Cita c) {
-        if(searchCita(c.getCodCita()).isPresent()){
-            return citasRepository.save(c);
-        }
-        return null;
-    }
-
-    public List<Cita> findAllByEmail(String email) {
-        return citasRepository.findAllByEmail(email);
-    }
-
-    /*
-    public Boolean deleteCita(int id) {
-        return searchCita(id).map(pro -> {
-            citasRepository.deleteById(id);
-            return true;
-        }).orElse(false);
-    }*/
+	public ResponseEntity<?> addCita(Citas c) {
+	    return citasClient.addCita(c);
+	}
+	
+//   
+//    
+//    public List<Citas> searchBySedeTurnoAndDate(int idSede, int idTurno, LocalDate fecha) {
+//    	Optional<Sede> sede = sedeService.findById(idSede);
+//    	Optional<Turno> turno = turnoService.findById(idTurno);
+//        return citasRepository.findBySedeAndTurnoAndFechaCita(sede, turno, fecha);
+//    }
+//    
+//    public List<Citas> searchByEstado(String estado) {
+//        return citasRepository.findByEstado(estado);
+//    }
+//
+//    
+//    public Optional<Citas> searchCita(int id) {
+//        return citasRepository.findById(id);
+//    }
+//    
+//
+//    public Citas updateCita(Citas c) {
+//        if(searchCita(c.getCodCita()).isPresent()){
+//            return citasRepository.save(c);
+//        }
+//        return null;
+//    }
+//
+//    public List<Citas> findAllByEmail(String email) {
+//        return citasRepository.findAllByEmail(email);
+//    }
+//
+//    /*
+//    public Boolean deleteCita(int id) {
+//        return searchCita(id).map(pro -> {
+//            citasRepository.deleteById(id);
+//            return true;
+//        }).orElse(false);
+//    }*/
 }

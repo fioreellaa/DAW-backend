@@ -6,19 +6,20 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.boutique.client.CitasClient;
 import com.boutique.model.Sede;
-import com.boutique.repository.ISedeRepository;
 
 @Service
 public class SedeService {
 
-	@Autowired
-	private ISedeRepository sedeRepository;
+	private final CitasClient citasClient;
+	
+	public SedeService(CitasClient citasClient) {
+		this.citasClient = citasClient;
+	}
 
-	public List<Sede> findAll() { return sedeRepository.findAll(); }
-
-	public Optional<Sede> findById(int idSede) {
-		return sedeRepository.findById(idSede);
+	public List<Sede> findAll() { 
+		return citasClient.listarSedes(); 
 	}
 
 }

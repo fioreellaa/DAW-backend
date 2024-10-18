@@ -1,29 +1,10 @@
 package com.boutique.model;
 
 import java.time.LocalDate;
-import java.util.Date;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
-import jakarta.persistence.Temporal;
-import jakarta.persistence.TemporalType;
+public class Citas {
 
-@Entity
-@Table(name = "citas")
-public class Cita {
-	@Id
-    @Column(name = "codCita")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int codCita;
-	
-	@Temporal(TemporalType.DATE)
 	private LocalDate fechaCita;
 	
 	private String estado;
@@ -31,21 +12,11 @@ public class Cita {
 	private String numeroTel;
 	private String email;
 	private String descripcion;
-	
-	@ManyToOne
-	@JoinColumn(name = "idServicio")
+
 	private Servicio servicio;
-	
-	@ManyToOne
-	@JoinColumn(name = "idSede")
 	private Sede sede;
-	
-	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "idTurno")
 	private Turno turno;
 	
-
-
 	public int getCodCita() {
 		return codCita;
 	}
@@ -130,3 +101,4 @@ public class Cita {
 	
 	
 }
+
