@@ -14,6 +14,7 @@ import com.boutique.model.Sede;
 import com.boutique.model.Servicio;
 import com.boutique.model.Turno;
 import com.boutique.service.CitaService;
+import com.boutique.service.ExternalService;
 import com.boutique.service.SedeService;
 import com.boutique.service.ServicioService;
 import com.boutique.service.TurnoService;
@@ -23,6 +24,9 @@ import com.boutique.service.TurnoService;
 @RequestMapping("/citas")
 public class CitasController {
 
+	@Autowired
+    private ExternalService externalService;
+	
 	@Autowired
 	private CitaService citaService;
 	
@@ -60,6 +64,11 @@ public class CitasController {
 	public List<Sede> listSede(){
 		return sedeService.findAll();
 	}
+	
+	 @GetMapping("/test-circuit-breaker")
+	 public String testCircuitBreaker() {
+		 return externalService.callClienteService();
+		 }
 	
 	
 //	@GetMapping("/list/fecha/{fecha}")
