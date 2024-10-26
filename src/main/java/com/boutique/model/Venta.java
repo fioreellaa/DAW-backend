@@ -24,10 +24,10 @@ public class Venta {
 	@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
 	private List<DetalleVenta> detalleVentas;
 
-	@ManyToOne
-	@JoinColumn(name = "id_usuario")
-	@JsonIgnoreProperties({"nombreUsuario", "apellidoUsuario", "direccionUsuario", "telefonoUsuario", "correoUsuario", "contrasenaUsuario", "tipoUsuario", "estadoUsuario"})
-	private Usuario usuario;
+//	@ManyToOne
+//	@JoinColumn(name = "id_usuario")
+//	@JsonIgnoreProperties({"nombreUsuario", "apellidoUsuario", "direccionUsuario", "telefonoUsuario", "correoUsuario", "contrasenaUsuario", "tipoUsuario", "estadoUsuario"})
+//	private Usuario usuario;
 
 	public int getIdVenta() { return idVenta; }
 
@@ -45,7 +45,7 @@ public class Venta {
 
 	public void setDetalleVentas(List<DetalleVenta> detalleVentas) { this.detalleVentas = detalleVentas; }
 
-	public Usuario getUsuario() { return usuario; }
-
-	public void setUsuario(Usuario usuario) { this.usuario = usuario; }
+//	public Usuario getUsuario() { return usuario; }
+//
+//	public void setUsuario(Usuario usuario) { this.usuario = usuario; }
 }
