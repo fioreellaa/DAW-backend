@@ -49,6 +49,19 @@ public class VentaService {
     }
 
 //    public List<Venta> buscarVentaPorCliente(int idUsuario) {
-//        return ventaRepository.findAllByUsuario_IdUsuario(idUsuario);
-//    }
+//       return ventaRepository.findAllByUsuario_IdUsuario(idUsuario);
+//   }
+    
+    public Venta registrarVentaConDetalles(Venta venta) {
+        Venta ventaRegistrada = ventaRepository.save(venta);
+
+        for (DetalleVenta detalle : venta.getDetalleVentas()) {
+            detalle.setVenta(ventaRegistrada); 
+            detalle.setProducto(detalle.getProducto());  
+            detalleVentaService.agregarDetalle(detalle, ventaRegistrada.getIdVenta());
+        }
+
+        return ventaRegistrada;
+    }
+
 }
