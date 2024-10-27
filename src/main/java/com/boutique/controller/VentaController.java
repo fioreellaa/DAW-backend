@@ -50,6 +50,6 @@ public class VentaController {
         return ventaService.eliminarVenta(id);
     }
 
-    @GetMapping("/usuario/{id}")
-    public List<Venta> buscarPorUsuario(@PathVariable int id) { return ventaService.buscarVentaPorCliente(id); }
+//    @GetMapping("/usuario/{id}")
+//    public List<Venta> buscarPorUsuario(@PathVariable int id) { return ventaService.buscarVentaPorCliente(id); }
 }

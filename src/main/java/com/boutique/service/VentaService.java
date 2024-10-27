@@ -48,7 +48,7 @@ public class VentaService {
         }).orElse(false);
     }
 
-    public List<Venta> buscarVentaPorCliente(int idUsuario) {
-        return ventaRepository.findAllByUsuario_IdUsuario(idUsuario);
-    }
+//    public List<Venta> buscarVentaPorCliente(int idUsuario) {
+//        return ventaRepository.findAllByUsuario_IdUsuario(idUsuario);
+//    }
 }

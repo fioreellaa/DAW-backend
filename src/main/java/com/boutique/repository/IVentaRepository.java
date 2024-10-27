@@ -10,5 +10,5 @@ import java.util.List;
 @Repository
 public interface IVentaRepository extends JpaRepository<Venta, Integer> {
 
-    List<Venta> findAllByUsuario_IdUsuario(int usuario);
+//    List<Venta> findAllByUsuario_IdUsuario(int usuario);
 }
